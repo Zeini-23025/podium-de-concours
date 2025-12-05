@@ -101,9 +101,8 @@ const TeamForm = ({ team = null, onSubmit, onCancel, loading = false }) => {
             setFormData({ ...formData, name: e.target.value });
             if (errors.name) setErrors({ ...errors, name: null });
           }}
-          className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary ${
-            errors.name ? 'border-danger' : 'border-slate-300'
-          }`}
+          className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary ${errors.name ? 'border-danger' : 'border-slate-300'
+            }`}
           aria-invalid={errors.name ? 'true' : 'false'}
           aria-describedby={errors.name ? 'name-error' : undefined}
           required
@@ -175,9 +174,8 @@ const TeamForm = ({ team = null, onSubmit, onCancel, loading = false }) => {
             setFormData({ ...formData, score: e.target.value });
             if (errors.score) setErrors({ ...errors, score: null });
           }}
-          className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary ${
-            errors.score ? 'border-danger' : 'border-slate-300'
-          }`}
+          className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary ${errors.score ? 'border-danger' : 'border-slate-300'
+            }`}
           aria-invalid={errors.score ? 'true' : 'false'}
           aria-describedby={errors.score ? 'score-error' : undefined}
         />
@@ -213,18 +211,18 @@ const TeamForm = ({ team = null, onSubmit, onCancel, loading = false }) => {
       </div>
 
       {/* Actions */}
-      <div className="flex gap-4 justify-end">
+      <div className="flex flex-col xs:flex-row gap-3 xs:gap-4 justify-end">
         <button
           type="button"
           onClick={onCancel}
-          className="px-6 py-2 border border-slate-300 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-smooth focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2"
+          className="px-4 sm:px-6 py-2 border border-slate-300 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-smooth focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 tap-target order-2 xs:order-1"
           disabled={loading}
         >
           Annuler
         </button>
         <button
           type="submit"
-          className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-smooth focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="px-4 sm:px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-smooth focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed tap-target order-1 xs:order-2"
           disabled={loading}
         >
           {loading ? 'Enregistrement...' : team ? 'Modifier' : 'Créer'}

@@ -26,21 +26,23 @@ const ProgressChart = ({ leaderboard }) => {
   }
 
   return (
-    <div className="glass rounded-lg p-6">
-      <h3 className="text-xl font-bold mb-4">Progression des 5 premières équipes</h3>
-      <ResponsiveContainer width="100%" height={300}>
+    <div className="glass rounded-lg p-4 sm:p-6">
+      <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">Progression des 5 premières équipes</h3>
+      <ResponsiveContainer width="100%" height={250} className="sm:h-[300px]">
         <LineChart data={chartData}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis 
-            dataKey="name" 
-            tick={{ fontSize: 12 }}
+          <XAxis
+            dataKey="name"
+            tick={{ fontSize: 10 }}
             angle={-45}
             textAnchor="end"
             height={80}
+            className="sm:text-xs"
           />
-          <YAxis 
-            tick={{ fontSize: 12 }}
+          <YAxis
+            tick={{ fontSize: 10 }}
             tickFormatter={(value) => formatNumber(value)}
+            className="sm:text-xs"
           />
           <Tooltip
             formatter={(value) => formatNumber(value)}
@@ -51,7 +53,7 @@ const ProgressChart = ({ leaderboard }) => {
               return label;
             }}
           />
-          <Legend />
+          <Legend wrapperStyle={{ fontSize: '12px' }} />
           <Line
             type="monotone"
             dataKey="score"

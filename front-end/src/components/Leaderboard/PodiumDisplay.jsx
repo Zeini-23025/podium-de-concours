@@ -86,7 +86,7 @@ const PodiumStep = ({ team, position, medalColor, height }) => {
         style={{ height: `${height}px` }}
         aria-label={`Position ${position} - Vide`}
       >
-        <div className="w-32 bg-slate-200 dark:bg-slate-700 rounded-t-lg h-full flex items-center justify-center text-slate-400">
+        <div className="w-20 sm:w-24 md:w-32 bg-slate-200 dark:bg-slate-700 rounded-t-lg h-full flex items-center justify-center text-slate-400">
           <span className="text-sm">-</span>
         </div>
       </div>
@@ -102,25 +102,27 @@ const PodiumStep = ({ team, position, medalColor, height }) => {
       aria-label={`Position ${position}: ${team.name}`}
     >
       {/* Team Info */}
-      <div className="mb-2 text-center">
+      <div className="mb-1 sm:mb-2 text-center px-1">
         {isFirst && (
           <Crown
-            className="w-8 h-8 text-warning mx-auto mb-1 animate-bounce"
+            className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-warning mx-auto mb-1 animate-bounce"
             aria-label="Champion"
           />
         )}
-        <div className="flex items-center justify-center gap-2 mb-1">
+        <div className="flex items-center justify-center gap-1 sm:gap-2 mb-1">
           <Medal
-            className="w-6 h-6"
+            className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"
             style={{ color: medalColor }}
             aria-hidden="true"
           />
-          <h3 className="font-bold text-lg">{team.name}</h3>
+          <h3 className="font-bold text-xs sm:text-sm md:text-lg truncate max-w-[80px] sm:max-w-[120px] md:max-w-none">
+            {team.name}
+          </h3>
         </div>
-        <div className="text-2xl font-bold text-primary mb-1">
+        <div className="text-base sm:text-xl md:text-2xl font-bold text-primary mb-1">
           {formatNumber(team.score || 0)}
         </div>
-        <div className="text-sm text-slate-600 dark:text-slate-400">
+        <div className="hidden sm:block text-xs md:text-sm text-slate-600 dark:text-slate-400 truncate max-w-[120px] md:max-w-none mx-auto">
           {team.members?.slice(0, 2).join(', ') || 'Aucun membre'}
           {team.members?.length > 2 && '...'}
         </div>
@@ -128,7 +130,7 @@ const PodiumStep = ({ team, position, medalColor, height }) => {
 
       {/* Podium Step */}
       <div
-        className="w-32 rounded-t-lg flex items-center justify-center text-white font-bold text-xl shadow-lg transition-smooth hover:scale-105"
+        className="w-20 sm:w-24 md:w-32 rounded-t-lg flex items-center justify-center text-white font-bold text-base sm:text-lg md:text-xl shadow-lg transition-smooth hover:scale-105"
         style={{
           backgroundColor: medalColor,
           height: `${height}px`,
@@ -156,13 +158,19 @@ const PodiumDisplay = ({ topTeams }) => {
     }
   }, [topTeams]);
 
-  const heights = { 1: 200, 2: 150, 3: 120 };
+  // Responsive heights
+  const heights = {
+    mobile: { 1: 120, 2: 90, 3: 70 },
+    tablet: { 1: 160, 2: 120, 3: 95 },
+    desktop: { 1: 200, 2: 150, 3: 120 },
+  };
+
   const positions = [2, 1, 3]; // Display order: 2nd, 1st, 3rd
 
   return (
-    <div className="relative mb-8" aria-label="Podium du classement">
+    <div className="relative mb-6 sm:mb-8" aria-label="Podium du classement">
       <Confetti active={showConfetti} />
-      <div className="flex items-end justify-center gap-4 px-4">
+      <div className="flex items-end justify-center gap-2 sm:gap-3 md:gap-4 px-2 sm:px-4">
         {positions.map((position) => {
           const team = topTeams[position - 1];
           const medalColors = {
@@ -171,14 +179,22 @@ const PodiumDisplay = ({ topTeams }) => {
             3: MEDAL_COLORS.bronze,
           };
 
+          // Use CSS classes for responsive heights
+          const heightClass = position === 1
+            ? 'h-[120px] sm:h-[160px] md:h-[200px]'
+            : position === 2
+              ? 'h-[90px] sm:h-[120px] md:h-[150px]'
+              : 'h-[70px] sm:h-[95px] md:h-[120px]';
+
           return (
-            <PodiumStep
-              key={position}
-              team={team}
-              position={position}
-              medalColor={medalColors[position]}
-              height={heights[position]}
-            />
+            <div key={position} className={heightClass}>
+              <PodiumStep
+                team={team}
+                position={position}
+                medalColor={medalColors[position]}
+                height={heights.desktop[position]}
+              />
+            </div>
           );
         })}
       </div>
@@ -187,4 +203,3 @@ const PodiumDisplay = ({ topTeams }) => {
 };
 
 export default React.memo(PodiumDisplay);
-

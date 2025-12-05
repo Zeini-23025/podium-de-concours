@@ -137,16 +137,17 @@ const AdminPanel = () => {
   }
 
   return (
-    <main className="container mx-auto px-4 py-8">
-      <div className="mb-6 flex items-center justify-between">
-        <h1 className="text-3xl font-bold">Panneau d'administration</h1>
+    <main className="container mx-auto px-3 sm:px-4 py-4 sm:py-6 md:py-8">
+      <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold">Panneau d'administration</h1>
         <button
           onClick={handleLogout}
-          className="flex items-center gap-2 px-4 py-2 border border-slate-300 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-smooth focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2"
+          className="flex items-center gap-2 px-3 sm:px-4 py-2 border border-slate-300 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-smooth focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 text-sm sm:text-base tap-target"
           aria-label="Se déconnecter"
         >
           <Unlock className="w-4 h-4" />
-          <span>Déconnexion</span>
+          <span className="hidden xs:inline">Déconnexion</span>
+          <span className="inline xs:hidden">↪</span>
         </button>
       </div>
 
@@ -155,13 +156,12 @@ const AdminPanel = () => {
         {toasts.map((toast) => (
           <div
             key={toast.id}
-            className={`px-4 py-2 rounded-lg shadow-lg ${
-              toast.type === 'success'
+            className={`px-4 py-2 rounded-lg shadow-lg ${toast.type === 'success'
                 ? 'bg-success text-white'
                 : toast.type === 'error'
-                ? 'bg-danger text-white'
-                : 'bg-primary text-white'
-            }`}
+                  ? 'bg-danger text-white'
+                  : 'bg-primary text-white'
+              }`}
             role="status"
             aria-live="polite"
           >
@@ -172,8 +172,8 @@ const AdminPanel = () => {
 
       {/* Create/Edit Form */}
       {(showForm || editingTeam) && (
-        <div className="mb-8 glass rounded-lg p-6">
-          <h2 className="text-xl font-bold mb-4">
+        <div className="mb-6 sm:mb-8 glass rounded-lg p-4 sm:p-6">
+          <h2 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">
             {editingTeam ? 'Modifier l\'équipe' : 'Créer une nouvelle équipe'}
           </h2>
           <TeamForm
@@ -190,12 +190,12 @@ const AdminPanel = () => {
 
       {/* Teams Table */}
       <div className="glass rounded-lg overflow-hidden">
-        <div className="p-4 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
-          <h2 className="text-xl font-bold">Gestion des équipes</h2>
+        <div className="p-3 sm:p-4 border-b border-slate-200 dark:border-slate-700 flex flex-col xs:flex-row items-start xs:items-center justify-between gap-2 xs:gap-4">
+          <h2 className="text-lg sm:text-xl font-bold">Gestion des équipes</h2>
           {!showForm && !editingTeam && (
             <button
               onClick={() => setShowForm(true)}
-              className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-smooth focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+              className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-smooth focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 text-sm sm:text-base tap-target w-full xs:w-auto justify-center"
               aria-label="Créer une nouvelle équipe"
             >
               <Plus className="w-4 h-4" />
@@ -223,32 +223,32 @@ const AdminPanel = () => {
             </button>
           </div>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full" aria-label="Tableau des équipes">
+          <div className="overflow-x-auto -mx-px">
+            <table className="w-full min-w-[640px]" aria-label="Tableau des équipes">
               <thead className="bg-slate-100 dark:bg-slate-800">
                 <tr>
-                  <th className="px-4 py-3 text-left text-sm font-medium">ID</th>
-                  <th className="px-4 py-3 text-left text-sm font-medium">Nom</th>
-                  <th className="px-4 py-3 text-left text-sm font-medium">Membres</th>
-                  <th className="px-4 py-3 text-left text-sm font-medium">Score</th>
-                  <th className="px-4 py-3 text-left text-sm font-medium">Actions</th>
+                  <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-xs sm:text-sm font-medium">ID</th>
+                  <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-xs sm:text-sm font-medium">Nom</th>
+                  <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-xs sm:text-sm font-medium hidden md:table-cell">Membres</th>
+                  <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-xs sm:text-sm font-medium">Score</th>
+                  <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-xs sm:text-sm font-medium">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
                 {teams.map((team) => (
                   <tr key={team.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/50">
-                    <td className="px-4 py-3 text-sm">{team.id}</td>
-                    <td className="px-4 py-3 text-sm font-medium">{team.name}</td>
-                    <td className="px-4 py-3 text-sm">
+                    <td className="px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm">{team.id}</td>
+                    <td className="px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium">{team.name}</td>
+                    <td className="px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm hidden md:table-cell">
                       {team.members?.join(', ') || 'Aucun'}
                     </td>
-                    <td className="px-4 py-3 text-sm">
+                    <td className="px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm">
                       <ScoreUpdater
                         team={team}
                         onUpdate={handleQuickScoreUpdate}
                       />
                     </td>
-                    <td className="px-4 py-3 text-sm">
+                    <td className="px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm">
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => {

@@ -51,14 +51,14 @@ const Dashboard = () => {
   }
 
   return (
-    <main className="container mx-auto px-4 py-8">
-      <div className="mb-6 flex items-center justify-between">
-        <h1 className="text-3xl font-bold">Tableau de bord</h1>
-        <div className="flex gap-2">
+    <main className="container mx-auto px-3 sm:px-4 py-4 sm:py-6 md:py-8">
+      <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold">Tableau de bord</h1>
+        <div className="flex flex-col xs:flex-row gap-2 w-full sm:w-auto">
           <button
             onClick={handleExportCSV}
             disabled={exportLoading || leaderboard.length === 0}
-            className="flex items-center gap-2 px-4 py-2 bg-success text-white rounded-lg hover:bg-success/90 transition-smooth focus-visible:ring-2 focus-visible:ring-success focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex items-center justify-center gap-2 px-3 sm:px-4 py-2 bg-success text-white rounded-lg hover:bg-success/90 transition-smooth focus-visible:ring-2 focus-visible:ring-success focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base tap-target flex-1 xs:flex-initial"
             aria-label="Exporter en CSV"
           >
             <FileText className="w-4 h-4" />
@@ -67,7 +67,7 @@ const Dashboard = () => {
           <button
             onClick={handleExportJSON}
             disabled={exportLoading || leaderboard.length === 0}
-            className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-smooth focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex items-center justify-center gap-2 px-3 sm:px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-smooth focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base tap-target flex-1 xs:flex-initial"
             aria-label="Exporter en JSON"
           >
             <FileJson className="w-4 h-4" />
@@ -85,8 +85,8 @@ const Dashboard = () => {
       </div>
 
       {/* Timeline (simplified) */}
-      <div className="glass rounded-lg p-6">
-        <h3 className="text-xl font-bold mb-4">Derniers changements</h3>
+      <div className="glass rounded-lg p-4 sm:p-6">
+        <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">Derniers changements</h3>
         {leaderboard.length === 0 ? (
           <p className="text-slate-500 text-center py-4">Aucun changement récent</p>
         ) : (

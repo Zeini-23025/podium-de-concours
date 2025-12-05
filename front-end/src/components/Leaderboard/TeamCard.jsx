@@ -38,22 +38,20 @@ const TeamCard = ({ team, rank, isLeader = false }) => {
 
   return (
     <div
-      className={`glass rounded-lg p-4 transition-smooth hover:scale-[1.02] hover:shadow-lg ${
-        isLeader ? 'ring-2 ring-warning' : ''
-      }`}
+      className={`glass rounded-lg p-3 sm:p-4 transition-smooth hover:scale-[1.02] hover:shadow-lg ${isLeader ? 'ring-2 ring-warning' : ''
+        }`}
       style={{
         animation: 'slideUp 0.3s ease-out',
         animationDelay: `${rank * 0.05}s`,
       }}
     >
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
         {/* Rank and Team Info */}
-        <div className="flex items-center gap-4 flex-1 min-w-0">
+        <div className="flex items-center gap-3 sm:gap-4 flex-1 min-w-0 w-full sm:w-auto">
           <div className="flex-shrink-0">
             <span
-              className={`text-2xl font-bold ${
-                rank <= 3 ? 'text-primary' : 'text-slate-500'
-              }`}
+              className={`text-xl sm:text-2xl font-bold ${rank <= 3 ? 'text-primary' : 'text-slate-500'
+                }`}
               aria-label={`Position ${rank}`}
             >
               #{rank}
@@ -62,16 +60,16 @@ const TeamCard = ({ team, rank, isLeader = false }) => {
 
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
-              <h3 className="font-bold text-lg truncate">{team.name}</h3>
+              <h3 className="font-bold text-base sm:text-lg truncate">{team.name}</h3>
               {isLeader && (
                 <Crown
-                  className="w-5 h-5 text-warning flex-shrink-0"
+                  className="w-4 h-4 sm:w-5 sm:h-5 text-warning flex-shrink-0"
                   aria-label="Équipe leader"
                 />
               )}
             </div>
-            <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
-              <Users className="w-4 h-4" aria-hidden="true" />
+            <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+              <Users className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" aria-hidden="true" />
               <span className="truncate">
                 {team.members?.join(', ') || 'Aucun membre'}
               </span>
@@ -80,9 +78,9 @@ const TeamCard = ({ team, rank, isLeader = false }) => {
         </div>
 
         {/* Score and Trend */}
-        <div className="flex items-center gap-4 flex-shrink-0">
-          <div className="text-right">
-            <div className="text-2xl font-bold text-primary">
+        <div className="flex items-center gap-3 sm:gap-4 flex-shrink-0 w-full sm:w-auto justify-between sm:justify-end">
+          <div className="text-left sm:text-right">
+            <div className="text-xl sm:text-2xl font-bold text-primary">
               {formatNumber(displayScore)}
             </div>
             <div className="text-xs text-slate-500">points</div>
@@ -93,7 +91,7 @@ const TeamCard = ({ team, rank, isLeader = false }) => {
             aria-label={`Tendance: ${label}`}
             title={label}
           >
-            <TrendIcon className="w-5 h-5" aria-hidden="true" />
+            <TrendIcon className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
             <span className="sr-only">{label}</span>
           </div>
         </div>

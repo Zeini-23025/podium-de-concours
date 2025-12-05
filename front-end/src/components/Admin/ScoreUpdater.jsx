@@ -27,56 +27,57 @@ const ScoreUpdater = ({ team, onUpdate, loading = false }) => {
   };
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-1 sm:gap-2">
       {isEditing ? (
         <>
           <button
             onClick={handleDecrement}
-            className="p-1 bg-danger text-white rounded hover:bg-danger/90 transition-smooth focus-visible:ring-2 focus-visible:ring-danger focus-visible:ring-offset-2"
+            className="p-1 bg-danger text-white rounded hover:bg-danger/90 transition-smooth focus-visible:ring-2 focus-visible:ring-danger focus-visible:ring-offset-2 tap-target"
             aria-label="Diminuer le score"
             disabled={loading}
           >
-            <Minus className="w-4 h-4" />
+            <Minus className="w-3 h-3 sm:w-4 sm:h-4" />
           </button>
           <input
             type="number"
             min="0"
             value={score}
             onChange={(e) => setScore(parseInt(e.target.value) || 0)}
-            className="w-20 px-2 py-1 border border-slate-300 rounded text-center focus:ring-2 focus:ring-primary focus:border-primary"
+            className="w-16 sm:w-20 px-1 sm:px-2 py-1 border border-slate-300 rounded text-center text-xs sm:text-sm focus:ring-2 focus:ring-primary focus:border-primary"
             aria-label="Score"
             disabled={loading}
           />
           <button
             onClick={handleIncrement}
-            className="p-1 bg-success text-white rounded hover:bg-success/90 transition-smooth focus-visible:ring-2 focus-visible:ring-success focus-visible:ring-offset-2"
+            className="p-1 bg-success text-white rounded hover:bg-success/90 transition-smooth focus-visible:ring-2 focus-visible:ring-success focus-visible:ring-offset-2 tap-target"
             aria-label="Augmenter le score"
             disabled={loading}
           >
-            <Plus className="w-4 h-4" />
+            <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
           </button>
           <button
             onClick={handleSave}
-            className="p-1 bg-primary text-white rounded hover:bg-primary/90 transition-smooth focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            className="p-1 bg-primary text-white rounded hover:bg-primary/90 transition-smooth focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 tap-target"
             aria-label="Enregistrer"
             disabled={loading}
           >
-            <Save className="w-4 h-4" />
+            <Save className="w-3 h-3 sm:w-4 sm:h-4" />
           </button>
           <button
             onClick={handleCancel}
-            className="px-2 py-1 text-sm border border-slate-300 rounded hover:bg-slate-50 dark:hover:bg-slate-800 transition-smooth focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2"
+            className="px-1 sm:px-2 py-1 text-xs sm:text-sm border border-slate-300 rounded hover:bg-slate-50 dark:hover:bg-slate-800 transition-smooth focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2"
             disabled={loading}
           >
-            Annuler
+            <span className="hidden xs:inline">Annuler</span>
+            <span className="inline xs:hidden">×</span>
           </button>
         </>
       ) : (
         <>
-          <span className="font-bold text-primary">{score}</span>
+          <span className="font-bold text-primary text-sm sm:text-base">{score}</span>
           <button
             onClick={() => setIsEditing(true)}
-            className="px-2 py-1 text-sm text-primary border border-primary rounded hover:bg-primary/10 transition-smooth focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            className="px-2 py-1 text-xs sm:text-sm text-primary border border-primary rounded hover:bg-primary/10 transition-smooth focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 tap-target"
             aria-label="Modifier le score"
           >
             Modifier

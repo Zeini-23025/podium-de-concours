@@ -51,20 +51,21 @@ const Leaderboard = () => {
   }
 
   return (
-    <main className="container mx-auto px-4 py-8">
-      <div className="mb-8">
-        <div className="flex items-center justify-between mb-4">
-          <h1 className="text-3xl font-bold">Classement en temps réel</h1>
+    <main className="container mx-auto px-3 sm:px-4 py-4 sm:py-6 md:py-8">
+      <div className="mb-6 sm:mb-8">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 mb-3 sm:mb-4">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold">Classement en temps réel</h1>
           <button
             onClick={handleRefresh}
-            className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-smooth focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-smooth focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 text-sm sm:text-base tap-target"
             aria-label="Actualiser le classement"
           >
             <RefreshCw className="w-4 h-4" aria-hidden="true" />
-            <span>Actualiser</span>
+            <span className="hidden xs:inline">Actualiser</span>
+            <span className="inline xs:hidden">↻</span>
           </button>
         </div>
-        <p className="text-slate-600 dark:text-slate-400">
+        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
           Mise à jour automatique toutes les 5 secondes
         </p>
       </div>
@@ -78,7 +79,7 @@ const Leaderboard = () => {
 
       {/* Full Leaderboard */}
       <section aria-label="Classement complet">
-        <h2 className="text-2xl font-bold mb-4">Classement complet</h2>
+        <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Classement complet</h2>
         {leaderboard.length === 0 ? (
           <div className="text-center py-12 text-slate-500">
             <p>Aucune équipe enregistrée pour le moment.</p>

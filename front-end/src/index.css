@@ -11,7 +11,12 @@
     @apply bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 transition-colors duration-200;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-bold;
   }
 }
@@ -24,6 +29,43 @@
   .transition-smooth {
     @apply transition-all duration-300 ease-in-out;
   }
+
+  /* Responsive utilities */
+  .container-responsive {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  .text-responsive-xl {
+    @apply text-2xl sm:text-3xl lg:text-4xl;
+  }
+
+  .text-responsive-lg {
+    @apply text-xl sm:text-2xl lg:text-3xl;
+  }
+
+  .text-responsive-base {
+    @apply text-sm sm:text-base lg:text-lg;
+  }
+
+  /* Touch-friendly tap targets */
+  .tap-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+
+  /* Mobile-specific utilities */
+  @media (max-width: 640px) {
+    .mobile-stack {
+      @apply flex-col;
+    }
+
+    .mobile-full {
+      @apply w-full;
+    }
+
+    .mobile-text-center {
+      @apply text-center;
+    }
+  }
 }
 
 /* Confetti animation */
@@ -32,6 +74,7 @@
     transform: translateY(-100vh) rotate(0deg);
     opacity: 1;
   }
+
   100% {
     transform: translateY(100vh) rotate(720deg);
     opacity: 0;

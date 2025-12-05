@@ -7,15 +7,15 @@ import { formatNumber, calculateAverage, formatDate } from '../../utils/helpers'
  */
 const StatsWidget = ({ icon: Icon, label, value, subtitle, className = '' }) => {
   return (
-    <div className={`glass rounded-lg p-6 ${className}`}>
+    <div className={`glass rounded-lg p-4 sm:p-6 ${className}`}>
       <div className="flex items-center justify-between mb-2">
-        <div className="p-3 bg-primary/10 rounded-lg">
-          <Icon className="w-6 h-6 text-primary" aria-hidden="true" />
+        <div className="p-2 sm:p-3 bg-primary/10 rounded-lg">
+          <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" aria-hidden="true" />
         </div>
       </div>
-      <div className="mt-4">
-        <p className="text-sm text-slate-600 dark:text-slate-400 mb-1">{label}</p>
-        <p className="text-2xl font-bold">{value}</p>
+      <div className="mt-3 sm:mt-4">
+        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mb-1">{label}</p>
+        <p className="text-xl sm:text-2xl font-bold truncate">{value}</p>
         {subtitle && (
           <p className="text-xs text-slate-500 mt-1">{subtitle}</p>
         )}
@@ -31,14 +31,14 @@ const StatsContainer = ({ teams, leaderboard }) => {
   const totalTeams = teams.length;
   const averageScore = calculateAverage(teams.map(t => t.score || 0));
   const leader = leaderboard[0];
-  const leaderGap = leader && leaderboard[1] 
-    ? leader.score - leaderboard[1].score 
+  const leaderGap = leader && leaderboard[1]
+    ? leader.score - leaderboard[1].score
     : 0;
-  const lastUpdate = teams.length > 0 
+  const lastUpdate = teams.length > 0
     ? teams.reduce((latest, team) => {
-        const teamDate = new Date(team.updated_at || team.created_at);
-        return teamDate > latest ? teamDate : latest;
-      }, new Date(0))
+      const teamDate = new Date(team.updated_at || team.created_at);
+      return teamDate > latest ? teamDate : latest;
+    }, new Date(0))
     : null;
 
   return (
